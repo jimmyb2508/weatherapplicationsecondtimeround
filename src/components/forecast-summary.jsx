@@ -7,7 +7,7 @@ const ForecastSummary = (props) => {
     <div className="summary-forecast">
       <span className="summary-date">{moment(props.date).format('ddd Do MMM')}</span>
         <br></br>
-      <span className="summary-temperature">{props.temperature}</span>
+      <span className="summary-temperature">{props.temperature}°C</span>
         <br></br>
       <span className="summary-description">{props.description}</span>
         <br></br>
