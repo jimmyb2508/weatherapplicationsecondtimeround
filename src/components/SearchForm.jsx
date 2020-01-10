@@ -25,7 +25,7 @@ class SearchForm extends React.Component {
         type="text" 
         onChange={this.handleInputChange}
         value={this.state.searchText}
-        placeholder="Enter City Name Here..."
+        placeholder="Enter City Name Here.."
       />
       <button
         onClick={e => onSearch(e, searchText)}
