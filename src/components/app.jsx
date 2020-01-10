@@ -2,6 +2,7 @@ import React from 'react';
 import LocationDetails from './location-details';
 import ForecastSummaries from './forecast-summaries';
 import ForecastDetails from './forecast-details';
+import SearchForm from './SearchForm';
 
 import '../styles/app.css';
 import Axios from 'axios';
@@ -39,6 +40,20 @@ class App extends React.Component {
     });
   }
 
+  handleCityRequest = (e, city) => {
+    e.preventDefault();
+
+    Axios.get(`https://mcr-codes-weather.herokuapp.com/forecast?city=${city}`).then(response => {
+      this.setState({
+        location: {
+          city: response.data.location.city,
+          country: response.data.location.country,
+        },
+        forecasts: response.data.forecasts,
+      });
+    });
+  };
+
   render() {
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === this.state.selectedDate);
 
@@ -48,6 +63,8 @@ class App extends React.Component {
           city={this.state.location.city}
           country={this.state.location.country}
         />
+        <SearchForm onSearch={this.handleCityRequest} />
+        <br></br>
         <ForecastSummaries 
           forecasts={this.state.forecasts} 
           onForecastSelect={this.handleForecastSelect} 
